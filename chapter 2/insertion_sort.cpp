@@ -11,18 +11,14 @@ void insertion_sort(std::vector<T>& input, bool descending = false) {
      * and put it in the left hand in the appropriate position.
      */
 
+    // comparison of previous and current values depending on sorting mode
+    auto compare = [descending](T& prev, T& current) {
+        return (descending) ? prev > current : prev < current;
+    };
+
     for (int current = 1; current < input.size(); current++) {
         T current_number = input[current];
         int i = current - 1;
-
-        // comparing previous and current values
-        // depending on sorting mode
-        auto compare = [descending](T& prev, T& current) {
-            if (descending) {
-                return prev > current;
-            };
-            return prev < current;
-        };
 
         // while previous number is bigger than the current number
         // swapping the values in the array
