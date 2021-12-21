@@ -10,9 +10,16 @@ void print_vector(std::vector<T>& a) {
     std::cout << '\n';
 }
 
-template <typename T>
-void assert_equal_vectors(std::vector<T>& first, std::vector<T>& second) {
+template <typename T, typename F>
+void assert_equal_vectors(std::vector<T>& first, std::vector<F>& second) {
     if (!std::equal(first.begin(), first.end(), second.begin())) {
-        throw (std::logic_error("Vectors are not equal!"));
+        throw(std::logic_error("Vectors are not equal!"));
+    }
+}
+
+template <typename T, typename F>
+void assert_equal_number(T& lhs, F& rhs) {
+    if (lhs != rhs) {
+        throw(std::logic_error("Numbers are not equal!"));
     }
 }

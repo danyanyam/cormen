@@ -31,7 +31,7 @@ void insertion_sort(std::vector<T>& input, bool descending = false) {
     }
 }
 
-int main(int argc, char const* argv[]) {
+int main() {
     // int = 4 bytes
     int n = 6;
     std::vector<float> a = {31, 41, 59.2, 26, 41, 58};
