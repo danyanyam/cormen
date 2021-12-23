@@ -23,3 +23,9 @@ void assert_equal_number(T& lhs, F& rhs) {
         throw(std::logic_error("Numbers are not equal!"));
     }
 }
+
+template <typename T>
+void print_array(T arr[], size_t size) {
+    for (size_t i = 0; i < size; i++) std::cout << arr[i] << " ";
+    std::cout << std::endl;
+};

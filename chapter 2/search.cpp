@@ -6,7 +6,7 @@
 
 template <typename T>
 std::optional<size_t> linear_search(std::vector<T>& vector, T number) {
-    /*
+    /**
      * Task 2.1-3
      * Performs linear search for a given element in the
      * vector. If element is found -- returns its index.

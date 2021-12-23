@@ -1,11 +1,10 @@
-#include <iostream>
 #include <vector>
 
 #include "utils.h"
 
 template <typename T>
 void insertion_sort(std::vector<T>& input, bool descending = false) {
-    /*
+    /**
      * Performs insertion sort as proposed by book in chapter 2.
      * The main idea behind is card sorting. We pick one card
      * and put it in the left hand in the appropriate position.
@@ -32,8 +31,6 @@ void insertion_sort(std::vector<T>& input, bool descending = false) {
 }
 
 int main() {
-    // int = 4 bytes
-    int n = 6;
     std::vector<float> a = {31, 41, 59.2, 26, 41, 58};
     std::vector<float> result = {26, 31, 41, 41, 58, 59.2};
 
