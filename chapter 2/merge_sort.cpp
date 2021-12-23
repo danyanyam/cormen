@@ -1,5 +1,3 @@
-// Merge sort in C++
-
 #include <iostream>
 
 #include "utils.h"
@@ -55,6 +53,6 @@ int main() {
     merge_sort(arr, 0, size - 1);
 
     std::cout << "\nSorted array: \n";
-    print_array(arr, size);
+    print_array(arr, size);  // 1 5 6 9 10 12
     return 0;
 }
