@@ -14,9 +14,9 @@ void bubble_sort(T arr[], int size, bool descending = false) {
         return (descending) ? lhs < rhs : lhs > rhs;
     };
 
-    for (int i = 0; i < size; i++) {           // n
-        for (int j = size - 1; j > i; j--) {  // n(n-1)
-            if (compare(arr[j], arr[j-1])) std::swap(arr[j], arr[j-1]);
+    for (int i = 0; i < size; i++) {          // n
+        for (int j = size - 1; j > i; j--) {  // n(n-1)/2
+            if (compare(arr[j], arr[j - 1])) std::swap(arr[j], arr[j - 1]);
         }
     }
 }
