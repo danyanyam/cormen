@@ -6,8 +6,10 @@ void bubble_sort(T arr[], int size, bool descending = false) {
      * Function sorts the passsed array of data
      * with the help of bubble_sort algorithm.
      *
-     * Complexity is O(n^2)
+     * Complexity is O(n^2) because
+     * an + bn(n-1) +cn(n-1) proportional to n^2
      */
+
     auto compare = [descending](T lhs, T rhs) {
         return (descending) ? lhs < rhs : lhs > rhs;
     };
