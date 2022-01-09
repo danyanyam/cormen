@@ -1,36 +1,7 @@
+#pragma once
 #include <iostream>
 #include <sstream>
-
-/**
- * @brief Declares interface of DynamicArray. Dynamic array is a type of container
- *        which is based on constant size arrays and resizes automatically once new
- *        data is pushed. Resizing is based on arrays capacity and current array size.
- *        Data is kept in constant-size arrays. Once the whole array is filled with data,
- *        the copy of that array with doubled capacity is created.
- *
- * @tparam T type of data is kept in constant-size array
- * @tparam cap initial capacity of dynamic array (defaults to 1)
- */
-template <typename T, size_t cap = 1>
-class DynamicArray
-{
-private:
-    size_t size_;
-    size_t capacity_;
-    T *arr;
-
-public:
-    DynamicArray();
-    ~DynamicArray();
-
-    void push_back(T &data);
-    void push_back(T data);
-    void clear();
-    void print();
-    T &pop_back();
-    T &operator[](size_t idx);
-    constexpr size_t size();
-};
+#include "darray_interface.hpp"
 
 /**
  * @brief Initializes array with type T and
@@ -42,7 +13,7 @@ public:
 template <typename T, size_t cap>
 DynamicArray<T, cap>::DynamicArray()
 {
-    arr = new T[cap];
+    arr_ = new T[cap];
     capacity_ = cap;
     size_ = 0;
 }
@@ -56,7 +27,7 @@ DynamicArray<T, cap>::DynamicArray()
 template <typename T, size_t cap>
 DynamicArray<T, cap>::~DynamicArray()
 {
-    delete[] arr;
+    delete[] arr_;
 }
 
 /**
@@ -76,13 +47,13 @@ void DynamicArray<T, cap>::push_back(T data)
         // copying the current array to the temporary
         for (size_t i = 0; i < size_; i++)
         {
-            temp[i] = arr[i];
+            temp[i] = arr_[i];
         }
-        delete[] arr;
-        arr = temp;
+        delete[] arr_;
+        arr_ = temp;
     }
 
-    arr[size_++] = data;
+    arr_[size_++] = data;
 }
 
 /**
@@ -102,20 +73,24 @@ void DynamicArray<T, cap>::print()
 
     content << '[';
 
-    if (size_ == 0)
+    if (size_ == 0){
+        content << ']';
+        std::cout << content.str() << '\n';
         return;
+    }
+
     if (size_ > 10)
     {
         for (size_t i = 0; i < 5; i++)
         {
-            content << arr[i] << ' ';
+            content << arr_[i] << ' ';
         }
 
         content << "... ";
 
         for (size_t i = size_ - 5; i != size_; i++)
         {
-            content << arr[i];
+            content << arr_[i];
             if (i != size_ - 1)
             {
                 content << ' ';
@@ -127,7 +102,7 @@ void DynamicArray<T, cap>::print()
 
     for (size_t i = 0; i < size_; i++)
     {
-        content << arr[i];
+        content << arr_[i];
         if (i != size_ - 1)
         {
             content << ' ';
@@ -144,10 +119,10 @@ void DynamicArray<T, cap>::print()
 template <typename T, size_t cap>
 void DynamicArray<T, cap>::clear()
 {
-    delete[] arr;
+    delete[] arr_;
     size_ = 0;
     capacity_ = 1;
-    arr = new T[capacity_];
+    arr_ = new T[capacity_];
 }
 /**
  * @brief Allows to access arrays elements by indexing
@@ -161,8 +136,8 @@ template <typename T, size_t cap>
 T &DynamicArray<T, cap>::operator[](size_t idx)
 {
     if (idx >= size_)
-        throw logic_error("Index is out of range");
-    return arr[idx];
+        throw std::logic_error("Index is out of range");
+    return arr_[idx];
 }
 /**
  * @brief returns the current size of an array
@@ -189,28 +164,4 @@ T &DynamicArray<T, cap>::pop_back()
     T &last_element = this->operator[](size_ - 1);
     size_--;
     return last_element;
-}
-
-int main()
-{
-    DynamicArray<int> v;
-
-    v.push_back(2);
-    v.push_back(3);
-    v.print();
-    std::cout << '\n'
-              << v.size() << '\n';
-
-    std::cout << "Popped" << v.pop_back() << '\n';
-    v.print();
-
-    for (size_t i = 0; i < 100; i++)
-    {
-        v.push_back(i);
-        v.print();
-    }
-    v.clear();
-    v.print();
-
-    return 0;
 }
