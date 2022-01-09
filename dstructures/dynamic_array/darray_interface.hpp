@@ -1,6 +1,3 @@
-#include <iostream>
-#include <sstream>
-
 /**
  * @brief Declares interface of DynamicArray. Dynamic array is a type of container
  *        which is based on constant size arrays and resizes automatically once new
