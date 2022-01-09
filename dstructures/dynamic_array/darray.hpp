@@ -67,7 +67,7 @@ void DynamicArray<T, cap>::print()
     std::stringstream info;    // Meta info of the array
     std::stringstream content; // Cotent of the array
 
-    info << "[DynamicArray] len: " << size_ << ". Capacity: " << capacity_ << ". Content:\n";
+    info << "\033[1;30m[DynamicArray] len: " << size_ << ". Capacity: " << capacity_ << ". Content:\033[0m\n";
     std::cout << info.str();
 
     content << '[';
